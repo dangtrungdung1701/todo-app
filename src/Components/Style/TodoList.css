@@ -49,6 +49,7 @@
   font-size: 80px;
   margin: 10px;
   text-align: center;
+  cursor: pointer;
 }
 .todo-list-container > .todo-list-empty-container > .ring {
   animation: shake 0.5s;
