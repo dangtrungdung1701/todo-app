@@ -16,7 +16,7 @@ function Header() {
     if (todo) {
       dispatch(
         actions.addTodo({
-          id: todos.length + 1,
+          id: Date.now(),
           title: todo,
           isDone: false,
         })
@@ -29,6 +29,25 @@ function Header() {
       }, 800);
     }
   };
+  const handleEnterAddTodo = (e) => {
+    if (e.key === "Enter") {
+      if (todo) {
+        dispatch(
+          actions.addTodo({
+            id: Date.now(),
+            title: todo,
+            isDone: false,
+          })
+        );
+        setTodo("");
+      } else {
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+        }, 800);
+      }
+    }
+  };
   const dispatch = useDispatch();
   return (
     <div className="header-container">
@@ -39,6 +58,7 @@ function Header() {
           onChange={handleOnChange}
           value={todo}
           placeholder="What do you wanna do ? my friend 🚀"
+          onKeyUp={handleEnterAddTodo}
         />
         {error ? (
           <button className="error-button">⚠️</button>
