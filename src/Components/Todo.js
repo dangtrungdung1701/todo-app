@@ -4,6 +4,7 @@ import * as actions from "../Redux/Actions";
 import { useDispatch } from "react-redux";
 
 function Todo(props) {
+  const todoInputEl = useRef(null);
   const todoEl = useRef(null);
   const [value, setValue] = useState(props.todo.title);
   useEffect(() => {
@@ -18,10 +19,19 @@ function Todo(props) {
   };
   const handleCheckTodo = () => {
     dispatch(actions.checkTodo(props.todo.id));
+    if (props.todo.isDone) {
+      todoInputEl.current.classList.add("done");
+    } else {
+      todoInputEl.current.classList.remove("done");
+    }
   };
   const handleEditTodo = (e) => {
-    e.preventDefault();
-    setValue(e.target.value);
+    if (todoInputEl.current.classList.contains("done")) {
+      e.target.blur();
+    } else {
+      e.preventDefault();
+      setValue(e.target.value);
+    }
   };
   const handleUpdateTodo = () => {
     if (value !== props.todo.title) {
@@ -34,7 +44,6 @@ function Todo(props) {
     }
   };
   const handleUpdateTodoByEnter = (e) => {
-    // console.log(e);
     if (e.key === "Enter") {
       if (value !== props.todo.title) {
         dispatch(
@@ -44,20 +53,17 @@ function Todo(props) {
           })
         );
       }
+      e.target.blur();
     }
   };
   return (
     <div className="todo-container" ref={todoEl}>
       <input
-        className="checkbox"
         type="checkbox"
         checked={props.todo.isDone}
         onClick={handleCheckTodo}
+        className="checkbox"
       />
-      {/* <p className="labelTodo">{props.todo.id}</p> */}
-      {/* <label htmlFor={props.todo.title} className="labelTodo">
-        {props.todo.id}
-      </label> */}
       <input
         className="text"
         type="text"
@@ -65,6 +71,7 @@ function Todo(props) {
         onChange={handleEditTodo}
         onBlur={handleUpdateTodo}
         onKeyUp={handleUpdateTodoByEnter}
+        ref={todoInputEl}
       />
       <button onClick={handleDeleteTodo}>🗑️</button>
     </div>

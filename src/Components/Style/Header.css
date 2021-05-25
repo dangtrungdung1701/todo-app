@@ -1,27 +1,40 @@
+@keyframes fadeInHeader {
+  0% {
+    display: none;
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    display: flex;
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .header-container {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
   flex-direction: column;
   flex: 0.2;
   width: 100%;
   margin: 10px 0;
-  /* flex: 1; */
+  animation: fadeInHeader 0.5s linear forwards;
 }
 .header-container > h1 {
-  font-size: 75px;
-  flex: 2;
+  font-size: 80px;
+  flex: 3;
+  align-items: center;
+  display: flex;
 }
 .header-container > .input-container {
   display: flex;
-  justify-content: space-around;
   flex: 1;
   width: 100%;
   align-items: center;
   padding: 2px;
 }
 .header-container > .input-container > input {
-  /* width: 50%; */
   width: 100%;
   margin: 0 10px 0 5px;
   padding: 0 5px;

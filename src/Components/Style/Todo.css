@@ -46,10 +46,6 @@
   width: auto;
   align-self: auto;
 }
-.todo-container > .labelTodo {
-  font-family: "Pattaya", sans-serif;
-  font-weight: bold;
-}
 .todo-container > .text {
   width: 80%;
   border: none;
@@ -72,6 +68,10 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   background-color: rgba(255, 255, 255, 0.5);
   transform: scale(1.02);
+}
+.todo-container > .text.done {
+  color: #929292;
+  text-decoration: line-through 2px solid #929292;
 }
 .todo-container > button {
   width: auto;
