@@ -19,14 +19,9 @@ function Todo(props) {
   };
   const handleCheckTodo = () => {
     dispatch(actions.checkTodo(props.todo.id));
-    if (props.todo.isDone) {
-      todoInputEl.current.classList.add("done");
-    } else {
-      todoInputEl.current.classList.remove("done");
-    }
   };
   const handleEditTodo = (e) => {
-    if (todoInputEl.current.classList.contains("done")) {
+    if (props.todo.isDone) {
       e.target.blur();
     } else {
       e.preventDefault();
@@ -65,7 +60,7 @@ function Todo(props) {
         className="checkbox"
       />
       <input
-        className="text"
+        className={`text ${props.todo.isDone && "done"}`}
         type="text"
         value={value}
         onChange={handleEditTodo}

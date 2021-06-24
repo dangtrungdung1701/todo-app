@@ -3,7 +3,7 @@ import Todo from "./Todo";
 import "./Style/TodoList.css";
 import { useSelector } from "react-redux";
 function TodoList() {
-  let todos = useSelector((state) => state);
+  let todos = useSelector((state) => state.todos);
   const handleClickBell = (e) => {
     e.target.classList.add("ring");
     console.log(e.target.classList);
@@ -13,7 +13,6 @@ function TodoList() {
     }, 800);
   };
   const reserveTodos = todos.slice(0).reverse();
-  console.log(reserveTodos);
   return (
     <div className="todo-list-container">
       {todos.length > 0 ? (

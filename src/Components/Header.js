@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as actions from "../Redux/Actions";
-import { useSelector } from "react-redux";
 import "./Style/Header.css";
-import { BottomNavigation } from "@material-ui/core";
 
 function Header() {
   const [error, setError] = useState(false);
   const [todo, setTodo] = useState("");
-  const todos = useSelector((state) => state);
   const handleOnChange = (e) => {
     setTodo(e.target.value);
   };
@@ -17,7 +14,7 @@ function Header() {
       dispatch(
         actions.addTodo({
           id: Date.now(),
-          title: todo,
+          title: todo.trim(),
           isDone: false,
         })
       );
@@ -35,7 +32,7 @@ function Header() {
         dispatch(
           actions.addTodo({
             id: Date.now(),
-            title: todo,
+            title: todo.trim(),
             isDone: false,
           })
         );
